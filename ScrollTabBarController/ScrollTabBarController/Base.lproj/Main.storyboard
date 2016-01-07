@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xgB-1Z-mzQ">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--WeChat-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ScrollTabBarController" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="WeChat" image="tabbar_wechat" selectedImage="tabbar_wechatHL" id="CVL-1c-0a4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1057" y="337"/>
+        </scene>
+        <!--Scroll Tab Bar Controller-->
+        <scene sceneID="CE4-Gz-MXK">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xgB-1Z-mzQ" customClass="ScrollTabBarController" customModule="ScrollTabBarController" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="4xd-nR-sZW">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="fqo-1b-cgC"/>
+                        <segue destination="kmn-e1-pMX" kind="relationship" relationship="viewControllers" id="5HK-Ga-bQU"/>
+                        <segue destination="ZQd-0A-5Rk" kind="relationship" relationship="viewControllers" id="BeG-Yi-jca"/>
+                        <segue destination="WZ5-5h-D3h" kind="relationship" relationship="viewControllers" id="TxD-A0-4bA"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x4h-X0-dYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="245" y="337"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="Wzy-pq-Fxf">
+            <objects>
+                <viewController id="ZQd-0A-5Rk" customClass="ViewController" customModule="ScrollTabBarController" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RgH-h5-L1W"/>
+                        <viewControllerLayoutGuide type="bottom" id="K8z-6D-u5d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mMv-Pe-Ocg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.94691610055332742" blue="0.31581093107006741" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Discover" image="tabbar_discover" selectedImage="tabbar_discoverHL" id="lOu-Ec-Npz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-zX-fbH" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-509" y="1201"/>
+        </scene>
+        <!--Contacts-->
+        <scene sceneID="VmB-Ru-nfP">
+            <objects>
+                <viewController id="kmn-e1-pMX" customClass="ViewController" customModule="ScrollTabBarController" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gz2-pJ-nU3"/>
+                        <viewControllerLayoutGuide type="bottom" id="fvY-8h-O9E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PXr-l0-Mb3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.5851245762595505" green="0.85232251879999998" blue="0.48553196452277914" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Contacts" image="tabbar_contacts" selectedImage="tabbar_contactsHL" id="Q15-Rb-AqV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="76W-yS-mcT" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="245" y="1201"/>
+        </scene>
+        <!--Me-->
+        <scene sceneID="uTq-Xn-jbI">
+            <objects>
+                <viewController id="WZ5-5h-D3h" customClass="ViewController" customModule="ScrollTabBarController" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rrt-e4-gRo"/>
+                        <viewControllerLayoutGuide type="bottom" id="2P8-KQ-3uq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g9e-Sg-lDf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Me" image="tabbar_me" selectedImage="tabbar_meHL" id="Agg-Ht-7uP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dsy-O6-b5A" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1057" y="1201"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="tabbar_contacts" width="27" height="23"/>
+        <image name="tabbar_contactsHL" width="27" height="23"/>
+        <image name="tabbar_discover" width="23" height="23"/>
+        <image name="tabbar_discoverHL" width="23" height="23"/>
+        <image name="tabbar_me" width="23" height="23"/>
+        <image name="tabbar_meHL" width="23" height="23"/>
+        <image name="tabbar_wechat" width="25" height="23"/>
+        <image name="tabbar_wechatHL" width="25" height="23"/>
+    </resources>
+</document>
