@@ -44,7 +44,7 @@ class SDETabBarViewController: SDEContainerViewController {
             delegate.interactionController.updateInteractiveTransition(progress)
         case .Cancelled, .Ended:
             interactive = false
-            if progress > 0.9{
+            if progress > 0.6{
                 delegate.interactionController.finishInteractiveTransition()
             }else{
                 delegate.interactionController.cancelInteractiveTransition()
