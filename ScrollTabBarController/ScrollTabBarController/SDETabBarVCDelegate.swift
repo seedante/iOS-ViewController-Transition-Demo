@@ -18,7 +18,7 @@ class SDETabBarVCDelegate: NSObject, UITabBarControllerDelegate {
         let toIndex = tabBarController.viewControllers!.indexOf(toVC)!
         
         let tabChangeDirection: TabOperationDirection = toIndex < fromIndex ? .Left : .Right
-        let transitionType = SDETransitionTye.TabTransition(tabChangeDirection)
+        let transitionType = SDETransitionType.TabTransition(tabChangeDirection)
         let slideAnimationController = SlideAnimationController(type: transitionType)
         return slideAnimationController
     }
