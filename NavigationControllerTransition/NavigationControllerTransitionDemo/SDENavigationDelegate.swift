@@ -14,7 +14,7 @@ class SDENavigationDelegate: NSObject, UINavigationControllerDelegate {
     let interactionController = UIPercentDrivenInteractiveTransition()
     
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let transitionType = SDETransitionTye.NavigationTransition(operation)
+        let transitionType = SDETransitionType.NavigationTransition(operation)
         return SlideAnimationController(type: transitionType)
     }
     

@@ -31,6 +31,20 @@ class SlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning 
         super.init()
     }
 
+    /*
+    在 UITabBarController 的转场里，如果你在动画控制器里实现了 animationEnded: 方法，这个方法会被调用2次。
+    而在 NavigationController 和 Modal 转场里没有这种问题，观察函数帧栈也发现比前两种转场多了一次私有函数调用：
+    [UITabBarController transitionFromViewController:toViewController:transition:shouldSetSelected:]
+    该方法和 UIViewController 的 transitionFromViewController:toViewController:duration:options:animations:completion: 
+    方法应该是一脉相承的，用于控制器的转换，我在文章里实现自定义容器控制器转场时也用过这个方法来实现自定义转场，不过由于测试不完整我在文章里将这块删掉了。
+    
+    最后，还没办法解决这个问题。再次感谢 @llwenDeng 发现这个问题。
+    */
+//    func animationEnded(transitionCompleted: Bool) {
+//        print("animationEnded: \(transitionCompleted)")
+//    }
+
+    
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.3
     }

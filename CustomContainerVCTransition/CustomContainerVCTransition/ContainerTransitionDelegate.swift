@@ -22,7 +22,7 @@ class SDEContainerViewControllerDelegate: NSObject, ContainerViewControllerDeleg
         let fromIndex = containerController.viewControllers!.indexOf(fromVC)!
         let toIndex = containerController.viewControllers!.indexOf(toVC)!
         let tabChangeDirection: TabOperationDirection = toIndex < fromIndex ? .Left : .Right
-        let transitionType = SDETransitionTye.TabTransition(tabChangeDirection)
+        let transitionType = SDETransitionType.TabTransition(tabChangeDirection)
         let slideAnimationController = SlideAnimationController(type: transitionType)
         return slideAnimationController
     }
