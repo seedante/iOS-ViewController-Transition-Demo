@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum SDETransitionTye{
+enum SDETransitionType{
     case NavigationTransition(UINavigationControllerOperation)
     case TabTransition(TabOperationDirection)
     case ModalTransition(ModalOperation)
@@ -24,9 +24,9 @@ enum ModalOperation{
 
 class SlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
-    private var transitionType: SDETransitionTye
+    private var transitionType: SDETransitionType
 
-    init(type: SDETransitionTye) {
+    init(type: SDETransitionType) {
         transitionType = type
         super.init()
     }
