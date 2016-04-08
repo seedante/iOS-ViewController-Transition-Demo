@@ -22,7 +22,7 @@ class ScrollTabBarController: UITabBarController {
         delegate = tabBarVCDelegate
         self.tabBar.tintColor = UIColor.greenColor()
         
-        panGesture.addTarget(self, action: "handlePan:")
+        panGesture.addTarget(self, action: #selector(ScrollTabBarController.handlePan(_:)))
         view.addGestureRecognizer(panGesture)
     }
     

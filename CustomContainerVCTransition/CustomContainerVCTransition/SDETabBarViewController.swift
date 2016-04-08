@@ -13,7 +13,7 @@ class SDETabBarViewController: SDEContainerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Configure Interactive Transiton
-        let pangesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        let pangesture = UIPanGestureRecognizer(target: self, action: #selector(SDETabBarViewController.handlePan(_:)))
         view.addGestureRecognizer(pangesture)
     }
     

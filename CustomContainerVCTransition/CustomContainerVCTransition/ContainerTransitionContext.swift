@@ -78,7 +78,7 @@ class ContainerTransitionContext: NSObject, UIViewControllerContextTransitioning
     }
     
     private func transitionEnd(){
-        if animationController != nil && animationController!.respondsToSelector("animationEnded:") == true{
+        if animationController != nil && animationController!.respondsToSelector(#selector(UIViewControllerAnimatedTransitioning.animationEnded(_:))) == true{
             animationController!.animationEnded!(!isCancelled)
         }
         //If transition is cancelled, recovery data.
@@ -106,7 +106,7 @@ class ContainerTransitionContext: NSObject, UIViewControllerContextTransitioning
             //为何不等 completion block 中恢复 fromView 的状态后再恢复 containerView.layer.speed，事实上那样做无效，原因未知。
             let fakeFromView = privateFromViewController.view.snapshotViewAfterScreenUpdates(false)
             privateContainerView.addSubview(fakeFromView)
-            performSelector("removeFakeFromView:", withObject: fakeFromView, afterDelay: 1/60)
+            performSelector(#selector(ContainerTransitionContext.removeFakeFromView(_:)), withObject: fakeFromView, afterDelay: 1/60)
         }
     }
     
@@ -161,14 +161,14 @@ class ContainerTransitionContext: NSObject, UIViewControllerContextTransitioning
         let timeSincePause = privateContainerView.layer.convertTime(CACurrentMediaTime(), fromLayer: nil) - pausedTime
         privateContainerView.layer.beginTime = timeSincePause
         
-        let displayLink = CADisplayLink(target: self, selector: "finishChangeButtonAppear:")
+        let displayLink = CADisplayLink(target: self, selector: #selector(ContainerTransitionContext.finishChangeButtonAppear(_:)))
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
     }
     
     func cancelInteractiveTransition() {
         interactive = false
         isCancelled = true
-        let displayLink = CADisplayLink(target: self, selector: "reverseCurrentAnimation:")
+        let displayLink = CADisplayLink(target: self, selector: #selector(ContainerTransitionContext.reverseCurrentAnimation(_:)))
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
         NSNotificationCenter.defaultCenter().postNotificationName(SDEInteractionEndNotification, object: self)
     }

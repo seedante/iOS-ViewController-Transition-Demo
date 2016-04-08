@@ -146,7 +146,7 @@ class SDEContainerViewController: UIViewController{
             button.backgroundColor = UIColor.clearColor()
             button.setTitle(vcTitle, forState: .Normal)
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.addTarget(self, action: "TabButtonTapped:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(SDEContainerViewController.TabButtonTapped(_:)), forControlEvents: .TouchUpInside)
             
             buttonTabBar.addSubview(button)
             buttonTabBar.addConstraint(NSLayoutConstraint(item: button, attribute: .CenterX, relatedBy: .Equal, toItem: buttonTabBar, attribute: .Leading, multiplier: 1, constant: (CGFloat(index) + 0.5) * kButtonSlotWidth))

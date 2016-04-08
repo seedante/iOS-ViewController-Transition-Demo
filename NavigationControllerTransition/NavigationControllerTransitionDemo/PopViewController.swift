@@ -18,7 +18,7 @@ class PopViewController: UIViewController {
         navigationItem.title = "StackTop"
         // Do any additional setup after loading the view.
         edgePanGesture.edges = .Left
-        edgePanGesture.addTarget(self, action: "handleEdgePanGesture:")
+        edgePanGesture.addTarget(self, action: #selector(PopViewController.handleEdgePanGesture(_:)))
         view.addGestureRecognizer(edgePanGesture)
     }
         
@@ -56,7 +56,7 @@ class PopViewController: UIViewController {
     }
 
     deinit{
-        edgePanGesture.removeTarget(self, action: "handleEdgePanGesture:")
+        edgePanGesture.removeTarget(self, action: #selector(PopViewController.handleEdgePanGesture(_:)))
     }
 
 }
