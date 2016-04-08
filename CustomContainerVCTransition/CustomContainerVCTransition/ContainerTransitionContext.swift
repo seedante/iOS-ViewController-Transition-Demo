@@ -90,6 +90,12 @@ class ContainerTransitionContext: NSObject, UIViewControllerContextTransitioning
         NSNotificationCenter.defaultCenter().postNotificationName(SDEContainerTransitionEndNotification, object: self)
     }
     
+    //修复内嵌在其他容器 VC 交互返回的转场中 containerView 消失并且的转场结束后自动恢复的 Bug。
+    @objc private func fixBeginTimeBug(){
+        privateContainerView.layer.beginTime = 0.0
+    }
+
+    
     @objc private func reverseCurrentAnimation(displayLink: CADisplayLink){
         let timeOffset = privateContainerView.layer.timeOffset - displayLink.duration
         if timeOffset > 0{
@@ -163,6 +169,14 @@ class ContainerTransitionContext: NSObject, UIViewControllerContextTransitioning
         
         let displayLink = CADisplayLink(target: self, selector: #selector(ContainerTransitionContext.finishChangeButtonAppear(_:)))
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        
+        //当 SDETabBarViewController 作为一个子 VC 内嵌在其他容器 VC 内，比如 NavigationController 里时，在 SDETabBarViewController 内完成一次交互转场后
+        //在外层的 NavigationController push 其他 VC 然后 pop 返回时，且仅限于交互控制，会出现 containerView 不见的情况，pop 完成后就恢复了。
+        //根源在于此时 beginTime 被修改了，在转场结束后恢复为 0 就可以了。解决灵感来自于如果没有一次完成了交互转场而全部是中途取消的话就不会出现这个 Bug。
+        //感谢简书用户@dasehng__ 反馈这个 Bug。
+        let remainingTime = CFTimeInterval(1 - transitionPercent) * transitionDuration
+        performSelector(#selector(ContainerTransitionContext.fixBeginTimeBug), withObject: nil, afterDelay: remainingTime)
+
     }
     
     func cancelInteractiveTransition() {
