@@ -1,6 +1,6 @@
 # iOS-ViewController-Transition-Demo
 
-[《iOS 视图控制器转场详解》](https://github.com/seedante/iOS-Note/wiki/ViewController-Transition)已发布到「iOS 开发」公众号，这是配套 Demo，使用 Swift  实现。本文并非华丽的转场动画教程，相反，为了不让文章过于复杂和冗长，范例的转场动画效果都是入门级别的。为何弄这么简单的动画效果？转场动画=转场+动画，转场的部分与动画的部分是独立的，无论是简单的转场动画还是复杂的转场动画，他们在转场部分的复杂度几乎是一样的。文章着眼于探索视图控制器转场背后的机制，缺陷以及实现过程中的技巧与陷阱。
+[《iOS 视图控制器转场详解》](https://github.com/seedante/iOS-Note/wiki/ViewController-Transition)已发布到微信公众号「iOSDevTips」，这是配套 Demo，使用 Swift 实现。本文并非华丽的转场动画教程，相反，为了不让文章过于复杂和冗长，范例的转场动画效果都是入门级别的。为何弄这么简单的动画效果？转场动画=转场+动画，转场的部分与动画的部分是独立的，无论是简单的转场动画还是复杂的转场动画，他们在转场部分的复杂度几乎是一样的。文章着眼于探索视图控制器转场背后的机制，缺陷以及实现过程中的技巧与陷阱。
 
 
 ###系统内建支持的转场
@@ -21,11 +21,11 @@
 
 熟能生巧，转场动画多写几次就知道了整个转场过程，你会发现转场其实蛮简单的，如果不考虑交互控制以及使用第三方的动画控制器，即使实现自定义容器控制器转场十几行代码就可以搞定，在文章里给出了具体代码。转场动画最困难的往往是动画效果本身，这取决于你对动画基础的掌握以及经验。
 
-###iOS10: 全程可交互的转场
+###iOS 10: 全程可交互的转场动画
 上个月的 [WWDC 2016 Session 216: Advances in UIKit Animations and Transitions](https://developer.apple.com/videos/play/wwdc2016/216/) 介绍了全新的交互动画 API，并在 iOS 10 中将其引入了转场协议，之前的转场动画在非交互与交互状态之间有明显的界限：如果以交互转场开始，尽管在交互结束后会切换到非交互状态，但之后无法再次切换到交互状态，只能等待其结束；如果以非交互转场开始，在转场动画结束前是无法切换到交互控制状态的，只能等待其结束。新的交互动画 API 打破了这种界限，使得转场动画全程都可以在这两种状态之间自由切换。
 
 不过，转场协议本身已略显臃肿，iOS 10在此基础上又添加了多个 optional，使得转场协议看上去复杂无比。我实践一番后，发现依靠新的交互动画 API，在实现转场动画可全程在非交互与交互之间自由切换的基础上，可以大幅精简转场协议。
 
-这部分的内容在[《iOS 视图控制器转场详解》](https://github.com/seedante/iOS-Note/wiki/ViewController-Transition)更新，Demo: iOS10PushPop。
+这部分的内容在[《iOS 视图控制器转场详解》](https://github.com/seedante/iOS-Note/wiki/ViewController-Transition)更新，Demo: iOS10PushPop，需要使用 Xcode 8。
 
-全新的交互动画 API 也可以用于实现普通动画的交互，实际上这个 API 野心很大，囊括了普通动画与转场动画的交互。我在 [ControlPanelAnimation](https://github.com/seedante/ControlPanelAnimation) 里演示了如何使用 UIView Animation 和这个新交互动画 API 实现普通动画的交互。
+全新的交互动画 API 可以用于普通动画的交互。我在 [ControlPanelAnimation](https://github.com/seedante/ControlPanelAnimation) 里演示了如何使用 UIView Animation 和这个新交互动画 API 实现普通动画的交互。
