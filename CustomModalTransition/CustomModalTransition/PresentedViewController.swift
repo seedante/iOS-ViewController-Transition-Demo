@@ -25,33 +25,33 @@ class PresentedViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let widthContraint = inputTextField.constraints.filter({constraint in
             constraint.identifier == "Width"
             }).first
         widthContraint?.constant = view.frame.width * 2 / 3
         
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.dismissButton.alpha = 1
-            self.inputTextField.layoutIfNeeded()
+            self.view.layoutIfNeeded()
         })
     }
     
-    @IBAction func dismiss(sender: AnyObject) {
-        var applyTransform = CGAffineTransformMakeRotation( 3 * CGFloat(M_PI))
-        applyTransform = CGAffineTransformScale(applyTransform, 0.1, 0.1)
+    @IBAction func dismiss(_ sender: AnyObject) {
+        var applyTransform = CGAffineTransform( rotationAngle: 3 * CGFloat(M_PI))
+        applyTransform = applyTransform.scaledBy(x: 0.1, y: 0.1)
 
         let widthContraint = inputTextField.constraints.filter({constraint in
             constraint.identifier == "Width"
         }).first
         widthContraint?.constant = 0
         
-        UIView.animateWithDuration(0.4, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.dismissButton.transform = applyTransform
-            self.inputTextField.layoutIfNeeded()
+            self.view.layoutIfNeeded()
             }, completion: { _ in
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
         })
         
     }

@@ -30,12 +30,12 @@ class PresentingViewController: UIViewController{
     */
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        let toVC = segue.destinationViewController as! PresentedViewController
+        let toVC = segue.destination as! PresentedViewController
         toVC.transitioningDelegate = presentTransitionDelegate
-        toVC.modalPresentationStyle = .Custom
-        super.prepareForSegue(segue, sender: sender)
+        toVC.modalPresentationStyle = .custom
+        super.prepare(for: segue, sender: sender)
     }
 }

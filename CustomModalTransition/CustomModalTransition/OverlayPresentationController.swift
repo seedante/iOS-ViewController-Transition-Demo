@@ -20,14 +20,14 @@ class OverlayPresentationController: UIPresentationController {
         dimmingView.center = containerView!.center
         dimmingView.bounds = CGRect(x: 0, y: 0, width: dimmingViewInitailWidth , height: dimmingViewInitailHeight)
         
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({
+        _ = presentedViewController.transitionCoordinator?.animate(alongsideTransition: {
             _ in
             self.dimmingView.bounds = self.containerView!.bounds
             }, completion: nil)
     }
     
     override func dismissalTransitionWillBegin() {
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ _ in
+        _ = presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
             self.dimmingView.alpha = 0.0
             }, completion: nil)
     }
@@ -37,7 +37,7 @@ class OverlayPresentationController: UIPresentationController {
         dimmingView.bounds = containerView!.bounds
         
         let width = containerView!.frame.width * 2 / 3, height = containerView!.frame.height * 2 / 3
-        presentedView()?.center = containerView!.center
-        presentedView()?.bounds = CGRect(x: 0, y: 0, width: width, height: height)
+        presentedView?.center = containerView!.center
+        presentedView?.bounds = CGRect(x: 0, y: 0, width: width, height: height)
     }
 }
