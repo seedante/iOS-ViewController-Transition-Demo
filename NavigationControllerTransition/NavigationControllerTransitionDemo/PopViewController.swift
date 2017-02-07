@@ -17,8 +17,8 @@ class PopViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "StackTop"
         // Do any additional setup after loading the view.
-        edgePanGesture.edges = .Left
-        edgePanGesture.addTarget(self, action: #selector(PopViewController.handleEdgePanGesture(_:)))
+        edgePanGesture.edges = .left
+        edgePanGesture.addTarget(self, action: #selector(PopViewController.handleEdgePanGesture(gesture:)))
         view.addGestureRecognizer(edgePanGesture)
     }
         
@@ -28,35 +28,34 @@ class PopViewController: UIViewController {
     }
         
     func handleEdgePanGesture(gesture: UIScreenEdgePanGestureRecognizer){
-        let translationX =  gesture.translationInView(view).x
+        let translationX =  gesture.translation(in: view).x
         let translationBase: CGFloat = view.frame.width / 3
         let translationAbs = translationX > 0 ? translationX : -translationX
         let percent = translationAbs > translationBase ? 1.0 : translationAbs / translationBase
         switch gesture.state{
-        case .Began:
+        case .began:
             navigationDelegate = self.navigationController?.delegate as? SDENavigationDelegate
             navigationDelegate?.interactive = true
-            self.navigationController?.popViewControllerAnimated(true)
-        case .Changed:
-            navigationDelegate?.interactionController.updateInteractiveTransition(percent)
-        case .Cancelled, .Ended:
+            _ = self.navigationController?.popViewController(animated: true)
+        case .changed:
+            navigationDelegate?.interactionController.update(percent)
+        case .cancelled, .ended:
             if percent > 0.5{
-                navigationDelegate?.interactionController.finishInteractiveTransition()
+                navigationDelegate?.interactionController.finish()
             }else{
-                navigationDelegate?.interactionController.cancelInteractiveTransition()
+                navigationDelegate?.interactionController.cancel()
             }
             navigationDelegate?.interactive = false
         default: break
         }
     }
     
-    @IBAction func popMe(sender: AnyObject) {
-        print(self.navigationController!.view)
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func popMe(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
     }
 
     deinit{
-        edgePanGesture.removeTarget(self, action: #selector(PopViewController.handleEdgePanGesture(_:)))
+        edgePanGesture.removeTarget(self, action: #selector(PopViewController.handleEdgePanGesture(gesture:)))
     }
 
 }
