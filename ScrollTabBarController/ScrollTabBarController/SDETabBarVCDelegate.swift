@@ -13,12 +13,12 @@ class SDETabBarVCDelegate: NSObject, UITabBarControllerDelegate {
     var interactive = false
     let interactionController = UIPercentDrivenInteractiveTransition()
     
-    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?{
-        let fromIndex = tabBarController.viewControllers!.indexOf(fromVC)!
-        let toIndex = tabBarController.viewControllers!.indexOf(toVC)!
+    func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?{
+        let fromIndex = tabBarController.viewControllers!.index(of: fromVC)!
+        let toIndex = tabBarController.viewControllers!.index(of: toVC)!
         
-        let tabChangeDirection: TabOperationDirection = toIndex < fromIndex ? .Left : .Right
-        let transitionType = SDETransitionType.TabTransition(tabChangeDirection)
+        let tabChangeDirection: TabOperationDirection = toIndex < fromIndex ? TabOperationDirection.left : TabOperationDirection.right
+        let transitionType = SDETransitionType.tabTransition(tabChangeDirection)
         let slideAnimationController = SlideAnimationController(type: transitionType)
         return slideAnimationController
     }
