@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD08D86A1E49B9010026E2D8 /* SlideAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD08D8691E49B9010026E2D8 /* SlideAnimationController.swift */; };
 		FD20705A1C329C460094EB7C /* SDETabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2070591C329C460094EB7C /* SDETabBarViewController.swift */; };
 		FD222A861C2F54CE0084F9F8 /* SDEPercentDrivenInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD222A851C2F54CE0084F9F8 /* SDEPercentDrivenInteractiveTransition.swift */; };
-		FD80AFF91C2E2E2A0023C21E /* SlideAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD80AFF81C2E2E2A0023C21E /* SlideAnimationController.swift */; };
 		FD80AFFB1C2E30010023C21E /* ContainerTransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD80AFFA1C2E30010023C21E /* ContainerTransitionContext.swift */; };
 		FD80B01B1C2EEBE80023C21E /* ContainerTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD80B01A1C2EEBE80023C21E /* ContainerTransitionDelegate.swift */; };
 		FD8AFEDC1C2B2A93008EC7F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8AFEDB1C2B2A93008EC7F9 /* AppDelegate.swift */; };
@@ -20,9 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD08D8691E49B9010026E2D8 /* SlideAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimationController.swift; sourceTree = "<group>"; };
 		FD2070591C329C460094EB7C /* SDETabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDETabBarViewController.swift; sourceTree = "<group>"; };
 		FD222A851C2F54CE0084F9F8 /* SDEPercentDrivenInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEPercentDrivenInteractiveTransition.swift; sourceTree = "<group>"; };
-		FD80AFF81C2E2E2A0023C21E /* SlideAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimationController.swift; sourceTree = "<group>"; };
 		FD80AFFA1C2E30010023C21E /* ContainerTransitionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerTransitionContext.swift; sourceTree = "<group>"; };
 		FD80B01A1C2EEBE80023C21E /* ContainerTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerTransitionDelegate.swift; sourceTree = "<group>"; };
 		FD8AFED81C2B2A93008EC7F9 /* CustomContainerVCTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomContainerVCTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,8 +70,8 @@
 				FD2070591C329C460094EB7C /* SDETabBarViewController.swift */,
 				FD80AFFA1C2E30010023C21E /* ContainerTransitionContext.swift */,
 				FD80B01A1C2EEBE80023C21E /* ContainerTransitionDelegate.swift */,
+				FD08D8691E49B9010026E2D8 /* SlideAnimationController.swift */,
 				FD222A851C2F54CE0084F9F8 /* SDEPercentDrivenInteractiveTransition.swift */,
-				FD80AFF81C2E2E2A0023C21E /* SlideAnimationController.swift */,
 				FD8AFEE21C2B2A93008EC7F9 /* Assets.xcassets */,
 				FD8AFEE41C2B2A93008EC7F9 /* LaunchScreen.storyboard */,
 				FD8AFEE71C2B2A93008EC7F9 /* Info.plist */,
@@ -106,12 +106,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = seedante;
 				TargetAttributes = {
 					FD8AFED71C2B2A93008EC7F9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 6Z8XUV9H6J;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -155,8 +155,8 @@
 				FD80B01B1C2EEBE80023C21E /* ContainerTransitionDelegate.swift in Sources */,
 				FD80AFFB1C2E30010023C21E /* ContainerTransitionContext.swift in Sources */,
 				FD8AFEDC1C2B2A93008EC7F9 /* AppDelegate.swift in Sources */,
-				FD80AFF91C2E2E2A0023C21E /* SlideAnimationController.swift in Sources */,
 				FD8AFEEE1C2D4387008EC7F9 /* SDEContainerViewController.swift in Sources */,
+				FD08D86A1E49B9010026E2D8 /* SlideAnimationController.swift in Sources */,
 				FD20705A1C329C460094EB7C /* SDETabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,8 +188,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -211,7 +213,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -233,8 +235,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -250,9 +254,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -262,11 +267,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CustomContainerVCTransition/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = seedante.CustomContainerVCTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -274,11 +281,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CustomContainerVCTransition/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = seedante.CustomContainerVCTransition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

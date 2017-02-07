@@ -9,34 +9,35 @@
 import UIKit
 
 enum SDETransitionType{
-    case NavigationTransition(UINavigationControllerOperation)
-    case TabTransition(TabOperationDirection)
-    case ModalTransition(ModalOperation)
+    case navigationTransition(UINavigationControllerOperation)
+    case tabTransition(TabOperationDirection)
+    case modalTransition(ModalOperation)
 }
 
 enum TabOperationDirection{
-    case Left, Right
+    case left, right
 }
 
 enum ModalOperation{
-    case Presentation, Dismissal
+    case presentation, dismissal
 }
 
 class SlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
-    private var transitionType: SDETransitionType
+    fileprivate var transitionType: SDETransitionType
 
     init(type: SDETransitionType) {
         transitionType = type
         super.init()
     }
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let containerView = transitionContext.containerView(), fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey), toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) else{
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let containerView = transitionContext.containerView
+        guard let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from), let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else{
             return  
         }
         
@@ -44,43 +45,41 @@ class SlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning 
         let toView = toVC.view
         
         var translation = containerView.frame.width
-        var toViewTransform = CGAffineTransformIdentity
-        var fromViewTransform = CGAffineTransformIdentity
+        var toViewTransform = CGAffineTransform.identity
+        var fromViewTransform = CGAffineTransform.identity
         
         switch transitionType{
-        case .NavigationTransition(let operation):
-            translation = operation == .Push ? translation : -translation
-            toViewTransform = CGAffineTransformMakeTranslation(translation, 0)
-            fromViewTransform = CGAffineTransformMakeTranslation(-translation, 0)
-        case .TabTransition(let direction):
-            translation = direction == .Left ? translation : -translation
-            fromViewTransform = CGAffineTransformMakeTranslation(translation, 0)
-            toViewTransform = CGAffineTransformMakeTranslation(-translation, 0)
-        case .ModalTransition(let operation):
+        case .navigationTransition(let operation):
+            translation = operation == .push ? translation : -translation
+            toViewTransform = CGAffineTransform(translationX: translation, y: 0)
+            fromViewTransform = CGAffineTransform(translationX: -translation, y: 0)
+        case .tabTransition(let direction):
+            translation = direction == .left ? translation : -translation
+            fromViewTransform = CGAffineTransform(translationX: translation, y: 0)
+            toViewTransform = CGAffineTransform(translationX: -translation, y: 0)
+        case .modalTransition(let operation):
             translation =  containerView.frame.height
-            toViewTransform = CGAffineTransformMakeTranslation(0, (operation == .Presentation ? translation : 0))
-            fromViewTransform = CGAffineTransformMakeTranslation(0, (operation == .Presentation ? 0 : translation))
+            toViewTransform = CGAffineTransform(translationX: 0, y: (operation == .presentation ? translation : 0))
+            fromViewTransform = CGAffineTransform(translationX: 0, y: (operation == .presentation ? 0 : translation))
         }
 
         switch transitionType{
-        case .ModalTransition(let operation):
+        case .modalTransition(let operation):
             switch operation{
-            case .Presentation: containerView.addSubview(toView)
-            case .Dismissal: break
+            case .presentation: containerView.addSubview(toView!)
+            case .dismissal: break
             }
-        default: containerView.addSubview(toView)
+        default: containerView.addSubview(toView!)
         }
         
-        toView.transform = toViewTransform
-        UIView.animateWithDuration(transitionDuration(transitionContext), animations: {
-            fromView.transform = fromViewTransform
-            toView.transform = CGAffineTransformIdentity
+        toView?.transform = toViewTransform
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            fromView?.transform = fromViewTransform
+            toView?.transform = CGAffineTransform.identity
             }, completion: { finished in
-                fromView.transform = CGAffineTransformIdentity
-                toView.transform = CGAffineTransformIdentity
-                
-                let isCancelled = transitionContext.transitionWasCancelled()
-                transitionContext.completeTransition(!isCancelled)
+                fromView?.transform = CGAffineTransform.identity
+                toView?.transform = CGAffineTransform.identity
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }
     
@@ -99,10 +98,12 @@ class SlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning 
     区别不大，重点在于在手势中如何控制动画。
     */
 
-//    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-//        guard let containerView = transitionContext.containerView(), fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey), toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) else{
+//    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+//        let containerView = transitionContext.containerView
+//        guard let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from), let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else{
 //            return
 //        }
+//
 //        
 //        let fromView = fromVC.view
 //        let toView = toVC.view
@@ -112,53 +113,51 @@ class SlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning 
 //        var fromViewTransform = CATransform3DIdentity
 //        
 //        switch transitionType{
-//        case .NavigationTransition(let operation):
-//            translation = operation == .Push ? translation : -translation
+//        case .navigationTransition(let operation):
+//            translation = operation == .push ? translation : -translation
 //            toViewTransform = CATransform3DMakeTranslation(translation, 0, 0)
 //            fromViewTransform = CATransform3DMakeTranslation(-translation, 0, 0)
-//        case .TabTransition(let direction):
-//            translation = direction == .Left ? translation : -translation
+//        case .tabTransition(let direction):
+//            translation = direction == .left ? translation : -translation
 //            fromViewTransform = CATransform3DMakeTranslation(translation, 0, 0)
 //            toViewTransform = CATransform3DMakeTranslation(-translation, 0, 0)
-//        case .ModalTransition(let operation):
+//        case .modalTransition(let operation):
 //            translation =  containerView.frame.height
-//            toViewTransform = CATransform3DMakeTranslation(0, (operation == .Presentation ? translation : 0), 0)
-//            fromViewTransform = CATransform3DMakeTranslation(0, (operation == .Presentation ? 0 : translation), 0)
+//            toViewTransform = CATransform3DMakeTranslation(0, (operation == .presentation ? translation : 0), 0)
+//            fromViewTransform = CATransform3DMakeTranslation(0, (operation == .presentation ? 0 : translation), 0)
 //        }
 //        
 //        switch transitionType{
-//        case .ModalTransition(let operation):
+//        case .modalTransition(let operation):
 //            switch operation{
-//            case .Presentation: containerView.addSubview(toView)
+//            case .presentation: containerView.addSubview(toView!)
 //                //在 dismissal 转场中，不要添加 toView，否则黑屏
-//            case .Dismissal: break
+//            case .dismissal: break
 //            }
-//        default: containerView.addSubview(toView)
+//        default: containerView.addSubview(toView!)
 //        }
 //        
-//        let duration = transitionDuration(transitionContext)
+//        let duration = transitionDuration(using: transitionContext)
 //        CATransaction.setCompletionBlock({
-//            fromView.layer.transform = CATransform3DIdentity
-//            toView.layer.transform = CATransform3DIdentity
-//            
-//            let isCancelled = transitionContext.transitionWasCancelled()
-//            transitionContext.completeTransition(!isCancelled)
+//            fromView?.layer.transform = CATransform3DIdentity
+//            toView?.layer.transform = CATransform3DIdentity
+//            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
 //        })
 //        
 //        CATransaction.setAnimationDuration(duration)
 //        CATransaction.begin()
 //        
 //        let toViewAnimation = CABasicAnimation(keyPath: "transform")
-//        toViewAnimation.fromValue = NSValue.init(CATransform3D: toViewTransform)
-//        toViewAnimation.toValue = NSValue.init(CATransform3D: CATransform3DIdentity)
+//        toViewAnimation.fromValue = NSValue.init(caTransform3D: toViewTransform)
+//        toViewAnimation.toValue = NSValue.init(caTransform3D: CATransform3DIdentity)
 //        toViewAnimation.duration = duration
-//        toView.layer.addAnimation(toViewAnimation, forKey: "move")
+//        toView?.layer.add(toViewAnimation, forKey: "move")
 //        
 //        let fromViewAnimation = CABasicAnimation(keyPath: "transform")
-//        fromViewAnimation.fromValue = NSValue.init(CATransform3D: CATransform3DIdentity)
-//        fromViewAnimation.toValue = NSValue.init(CATransform3D: fromViewTransform)
+//        fromViewAnimation.fromValue = NSValue.init(caTransform3D: CATransform3DIdentity)
+//        fromViewAnimation.toValue = NSValue.init(caTransform3D: fromViewTransform)
 //        fromViewAnimation.duration = duration
-//        fromView.layer.addAnimation(fromViewAnimation, forKey: "move")
+//        fromView?.layer.add(fromViewAnimation, forKey: "move")
 //        
 //        CATransaction.commit()
 //    }

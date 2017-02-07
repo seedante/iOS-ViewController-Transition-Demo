@@ -10,21 +10,21 @@ import UIKit
 
 class SDEContainerViewController: UIViewController{
     //MARK: Normal Property
-    private let kButtonSlotWidth: CGFloat = 64
-    private let kButtonSlotHeight: CGFloat = 44
-    private let privateContainerView = UIView()
+    fileprivate let kButtonSlotWidth: CGFloat = 64
+    fileprivate let kButtonSlotHeight: CGFloat = 44
+    fileprivate let privateContainerView = UIView()
     let buttonTabBar = UIView()
-    private var buttonTitles: [String] = []
+    fileprivate var buttonTitles: [String] = []
     
     //MARK: Property for Transition
     var interactive = false
     weak var containerTransitionDelegate: ContainerViewControllerDelegate?
-    private var containerTransitionContext: ContainerTransitionContext?
+    fileprivate var containerTransitionContext: ContainerTransitionContext?
     //MARK: Property like UITabBarController
     //set viewControllers need more code and test, so keep this private in this demo.
-    private(set) var viewControllers: [UIViewController]?
-    private var shouldReserve = false
-    private var priorSelectedIndex: Int = NSNotFound
+    fileprivate(set) var viewControllers: [UIViewController]?
+    fileprivate var shouldReserve = false
+    fileprivate var priorSelectedIndex: Int = NSNotFound
     var selectedIndex: Int = NSNotFound{
         willSet{
             if shouldReserve{
@@ -46,7 +46,7 @@ class SDEContainerViewController: UIViewController{
             if viewControllers == nil{
                 return
             }
-            if let index = viewControllers!.indexOf(selectedViewController!){
+            if let index = viewControllers!.index(of: selectedViewController!){
                 selectedIndex = index
             }else{
                 print("The view controller is not in the viewControllers")
@@ -65,12 +65,12 @@ class SDEContainerViewController: UIViewController{
             buttonTitles.append(title)
             //适应屏幕旋转的最简单的办法，在转场开始前设置子 view 的尺寸为容器视图的尺寸。
             childVC.view.translatesAutoresizingMaskIntoConstraints = true
-            childVC.view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+            childVC.view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(SDEContainerTransitionEndNotification, object: nil, queue: nil, usingBlock: { _ in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: SDEContainerTransitionEndNotification), object: nil, queue: nil, using: { _ in
             self.containerTransitionContext = nil
-            self.buttonTabBar.userInteractionEnabled = true
+            self.buttonTabBar.isUserInteractionEnabled = true
         })
     }
 
@@ -81,37 +81,37 @@ class SDEContainerViewController: UIViewController{
     
     override func loadView() {
         let rootView = UIView()
-        rootView.backgroundColor = UIColor.blackColor()
-        rootView.opaque = true
+        rootView.backgroundColor = UIColor.black
+        rootView.isOpaque = true
         
         self.view = rootView
         
         privateContainerView.translatesAutoresizingMaskIntoConstraints = false
-        privateContainerView.backgroundColor = UIColor.blackColor()
-        privateContainerView.opaque = true
+        privateContainerView.backgroundColor = UIColor.black
+        privateContainerView.isOpaque = true
         rootView.addSubview(privateContainerView)
         
-        rootView.addConstraint(NSLayoutConstraint(item: privateContainerView, attribute: .Width, relatedBy: .Equal, toItem: rootView, attribute: .Width, multiplier: 1, constant: 0))
-        rootView.addConstraint(NSLayoutConstraint(item: privateContainerView, attribute: .Height, relatedBy: .Equal, toItem: rootView, attribute: .Height, multiplier: 1, constant: 0))
-        rootView.addConstraint(NSLayoutConstraint(item: privateContainerView, attribute: .Left, relatedBy: .Equal, toItem: rootView, attribute: .Left, multiplier: 1, constant: 0))
-        rootView.addConstraint(NSLayoutConstraint(item: privateContainerView, attribute: .Top, relatedBy: .Equal, toItem: rootView, attribute: .Top, multiplier: 1, constant: 0))
+        rootView.addConstraint(NSLayoutConstraint(item: privateContainerView, attribute: .width, relatedBy: .equal, toItem: rootView, attribute: .width, multiplier: 1, constant: 0))
+        rootView.addConstraint(NSLayoutConstraint(item: privateContainerView, attribute: .height, relatedBy: .equal, toItem: rootView, attribute: .height, multiplier: 1, constant: 0))
+        rootView.addConstraint(NSLayoutConstraint(item: privateContainerView, attribute: .left, relatedBy: .equal, toItem: rootView, attribute: .left, multiplier: 1, constant: 0))
+        rootView.addConstraint(NSLayoutConstraint(item: privateContainerView, attribute: .top, relatedBy: .equal, toItem: rootView, attribute: .top, multiplier: 1, constant: 0))
         
         buttonTabBar.translatesAutoresizingMaskIntoConstraints = false
-        buttonTabBar.backgroundColor = UIColor.clearColor()
+        buttonTabBar.backgroundColor = UIColor.clear
         buttonTabBar.tintColor = UIColor(white: 1, alpha: 0.75)
         rootView.addSubview(buttonTabBar)
         
         let count = viewControllers != nil ? viewControllers!.count : 0
-        rootView.addConstraint(NSLayoutConstraint(item: buttonTabBar, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: CGFloat(count) * kButtonSlotWidth))
-        rootView.addConstraint(NSLayoutConstraint(item: buttonTabBar, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: kButtonSlotHeight))
-        rootView.addConstraint(NSLayoutConstraint(item: buttonTabBar, attribute: .CenterX, relatedBy: .Equal, toItem: privateContainerView, attribute: .CenterX, multiplier: 1, constant: 0))
-        rootView.addConstraint(NSLayoutConstraint(item: buttonTabBar, attribute: .CenterY, relatedBy: .Equal, toItem: privateContainerView, attribute: .CenterY, multiplier: 0.2, constant: 0))
+        rootView.addConstraint(NSLayoutConstraint(item: buttonTabBar, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: CGFloat(count) * kButtonSlotWidth))
+        rootView.addConstraint(NSLayoutConstraint(item: buttonTabBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: kButtonSlotHeight))
+        rootView.addConstraint(NSLayoutConstraint(item: buttonTabBar, attribute: .centerX, relatedBy: .equal, toItem: privateContainerView, attribute: .centerX, multiplier: 1, constant: 0))
+        rootView.addConstraint(NSLayoutConstraint(item: buttonTabBar, attribute: .centerY, relatedBy: .equal, toItem: privateContainerView, attribute: .centerY, multiplier: 0.2, constant: 0))
         
         addChildViewControllerButtons()
     }
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //Setting this property in other method before this one will make a bug: when you go back to this initial selectedIndex, no transition animation.
         if viewControllers != nil && viewControllers!.count > 0 && selectedIndex == NSNotFound{
@@ -120,7 +120,7 @@ class SDEContainerViewController: UIViewController{
     }
     
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     //MARK: Restore data and change button appear
@@ -131,48 +131,48 @@ class SDEContainerViewController: UIViewController{
     
     
     //Only work in interactive transition
-    func graduallyChangeTabButtonAppearWith(fromIndex: Int, toIndex: Int, percent: CGFloat){
+    func graduallyChangeTabButtonAppearWith(_ fromIndex: Int, toIndex: Int, percent: CGFloat){
         let fromButton = buttonTabBar.subviews[fromIndex] as! UIButton
         let toButton = buttonTabBar.subviews[toIndex] as! UIButton
         
-        fromButton.setTitleColor(UIColor(red: 1, green: percent, blue: percent, alpha: 1), forState: .Normal)
-        toButton.setTitleColor(UIColor(red: 1, green: 1 - percent, blue: 1 - percent, alpha: 1), forState: .Normal)
+        fromButton.setTitleColor(UIColor(red: 1, green: percent, blue: percent, alpha: 1), for: UIControlState())
+        toButton.setTitleColor(UIColor(red: 1, green: 1 - percent, blue: 1 - percent, alpha: 1), for: UIControlState())
     }
     
     //MARK: Private Helper Method
-    private func addChildViewControllerButtons(){
-        for (index, vcTitle) in buttonTitles.enumerate(){
+    fileprivate func addChildViewControllerButtons(){
+        for (index, vcTitle) in buttonTitles.enumerated(){
             let button = UIButton(frame: CGRect(x: 0, y: 0, width: kButtonSlotWidth, height: kButtonSlotHeight))
-            button.backgroundColor = UIColor.clearColor()
-            button.setTitle(vcTitle, forState: .Normal)
+            button.backgroundColor = UIColor.clear
+            button.setTitle(vcTitle, for: UIControlState())
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.addTarget(self, action: #selector(SDEContainerViewController.TabButtonTapped(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(SDEContainerViewController.TabButtonTapped(_:)), for: .touchUpInside)
             
             buttonTabBar.addSubview(button)
-            buttonTabBar.addConstraint(NSLayoutConstraint(item: button, attribute: .CenterX, relatedBy: .Equal, toItem: buttonTabBar, attribute: .Leading, multiplier: 1, constant: (CGFloat(index) + 0.5) * kButtonSlotWidth))
-            buttonTabBar.addConstraint(NSLayoutConstraint(item: button, attribute: .CenterY, relatedBy: .Equal, toItem: buttonTabBar, attribute: .CenterY, multiplier: 1, constant: 0))
+            buttonTabBar.addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: buttonTabBar, attribute: .leading, multiplier: 1, constant: (CGFloat(index) + 0.5) * kButtonSlotWidth))
+            buttonTabBar.addConstraint(NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: buttonTabBar, attribute: .centerY, multiplier: 1, constant: 0))
         }
     }
     
     @objc
-    private func TabButtonTapped(button: UIButton){
-        if let tappedIndex = buttonTabBar.subviews.indexOf(button) where tappedIndex != selectedIndex{
+    fileprivate func TabButtonTapped(_ button: UIButton){
+        if let tappedIndex = buttonTabBar.subviews.index(of: button), tappedIndex != selectedIndex{
             selectedIndex = tappedIndex
         }
     }
     
-    private func changeTabButtonAppearAtIndex(selectedIndex: Int){
-        for (index, subView) in buttonTabBar.subviews.enumerate(){
+    fileprivate func changeTabButtonAppearAtIndex(_ selectedIndex: Int){
+        for (index, subView) in buttonTabBar.subviews.enumerated(){
             let button = subView as! UIButton
             if index != selectedIndex{
-                button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                button.setTitleColor(UIColor.white, for: UIControlState())
             }else{
-                button.setTitleColor(UIColor.redColor(), forState: .Normal)
+                button.setTitleColor(UIColor.red, for: UIControlState())
             }
         }
     }
     
-    private func transitionViewControllerFromIndex(fromIndex: Int, toIndex: Int){
+    fileprivate func transitionViewControllerFromIndex(_ fromIndex: Int, toIndex: Int){
         if viewControllers == nil || fromIndex == toIndex || fromIndex < 0 || toIndex < 0 || toIndex >= viewControllers!.count || (fromIndex >= viewControllers!.count && fromIndex != NSNotFound){
             return
         }
@@ -181,13 +181,13 @@ class SDEContainerViewController: UIViewController{
             let selectedVC = viewControllers![toIndex]
             addChildViewController(selectedVC)
             privateContainerView.addSubview(selectedVC.view)
-            selectedVC.didMoveToParentViewController(self)
+            selectedVC.didMove(toParentViewController: self)
             changeTabButtonAppearAtIndex(toIndex)
             return
         }
         
         if containerTransitionDelegate != nil{
-            buttonTabBar.userInteractionEnabled = false
+            buttonTabBar.isUserInteractionEnabled = false
             
             let fromVC = viewControllers![fromIndex]
             let toVC = viewControllers![toIndex]
@@ -203,14 +203,14 @@ class SDEContainerViewController: UIViewController{
         }else{
             //Transition Without Animation
             let priorSelectedVC = viewControllers![fromIndex]
-            priorSelectedVC.willMoveToParentViewController(nil)
+            priorSelectedVC.willMove(toParentViewController: nil)
             priorSelectedVC.view.removeFromSuperview()
             priorSelectedVC.removeFromParentViewController()
             
             let newSelectedVC = viewControllers![toIndex]
             addChildViewController(newSelectedVC)
             privateContainerView.addSubview(newSelectedVC.view)
-            newSelectedVC.didMoveToParentViewController(self)
+            newSelectedVC.didMove(toParentViewController: self)
             
             changeTabButtonAppearAtIndex(toIndex)
         }

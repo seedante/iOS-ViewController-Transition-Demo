@@ -12,7 +12,7 @@ class SDEPercentDrivenInteractiveTransition: NSObject, UIViewControllerInteracti
     
     weak var containerTransitionContext: ContainerTransitionContext?
     
-    func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         if let context = transitionContext as? ContainerTransitionContext{
             containerTransitionContext = context
             containerTransitionContext?.activateInteractiveTransition()
@@ -21,7 +21,7 @@ class SDEPercentDrivenInteractiveTransition: NSObject, UIViewControllerInteracti
         }
     }
     
-    func updateInteractiveTransition(percentComplete: CGFloat){
+    func updateInteractiveTransition(_ percentComplete: CGFloat){
         containerTransitionContext?.updateInteractiveTransition(percentComplete)
     }
     

@@ -7,6 +7,19 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class SDETabBarViewController: SDEContainerViewController {
     
@@ -17,20 +30,20 @@ class SDETabBarViewController: SDEContainerViewController {
         view.addGestureRecognizer(pangesture)
     }
     
-    func handlePan(gesture: UIPanGestureRecognizer){
+    func handlePan(_ gesture: UIPanGestureRecognizer){
         if viewControllers == nil || viewControllers?.count < 2 || containerTransitionDelegate == nil || !(containerTransitionDelegate is SDEContainerViewControllerDelegate) {
             return
         }
         
         let delegate = containerTransitionDelegate as! SDEContainerViewControllerDelegate
         
-        let translationX =  gesture.translationInView(view).x
+        let translationX =  gesture.translation(in: view).x
         let translationAbs = translationX > 0 ? translationX : -translationX
         let progress = translationAbs / view.frame.width
         switch gesture.state{
-        case .Began:
+        case .began:
             interactive = true
-            let velocityX = gesture.velocityInView(view).x
+            let velocityX = gesture.velocity(in: view).x
             if velocityX < 0{
                 if selectedIndex < viewControllers!.count - 1{
                     selectedIndex += 1
@@ -40,9 +53,9 @@ class SDETabBarViewController: SDEContainerViewController {
                     selectedIndex -= 1
                 }
             }
-        case .Changed:
+        case .changed:
             delegate.interactionController.updateInteractiveTransition(progress)
-        case .Cancelled, .Ended:
+        case .cancelled, .ended:
             interactive = false
             if progress > 0.6{
                 delegate.interactionController.finishInteractiveTransition()
