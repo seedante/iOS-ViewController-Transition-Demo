@@ -37,14 +37,14 @@ class SDENavigationDelegate: NSObject, UINavigationControllerDelegate, UIViewCon
     /// If you change any of 'duration', keep two 'duration' same.
     var transitionAnimator: UIViewPropertyAnimator = UIViewPropertyAnimator(duration: 1, timingParameters: UISpringTimingParameters(dampingRatio: 1, initialVelocity: CGVector(dx: 1, dy: 0)))
     
-    func transitionDuration(_ transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
     
-    func animateTransition(_ transitionContext: UIViewControllerContextTransitioning){
-        let containerView = transitionContext.containerView()
-        guard let fromView = transitionContext.view(forKey: UITransitionContextFromViewKey),
-              let toView = transitionContext.view(forKey: UITransitionContextToViewKey)
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning){
+        let containerView = transitionContext.containerView
+        guard let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from),
+              let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)
         else {
             return
         }

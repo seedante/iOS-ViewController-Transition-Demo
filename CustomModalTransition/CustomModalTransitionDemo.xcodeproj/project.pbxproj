@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD0E26901E49BFC800557F5C /* SlideAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E268F1E49BFC800557F5C /* SlideAnimationController.swift */; };
 		FD368AD21C1F26C9001D204F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD368AD11C1F26C9001D204F /* AppDelegate.swift */; };
 		FD368AD41C1F26C9001D204F /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD368AD31C1F26C9001D204F /* PresentedViewController.swift */; };
 		FD368AD71C1F26C9001D204F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD368AD51C1F26C9001D204F /* Main.storyboard */; };
@@ -14,12 +15,12 @@
 		FD368ADC1C1F26C9001D204F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD368ADA1C1F26C9001D204F /* LaunchScreen.storyboard */; };
 		FD8AFEA81C26E869008EC7F9 /* OverlayAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8AFEA71C26E869008EC7F9 /* OverlayAnimationController.swift */; };
 		FD8FA9801C20629C00C30038 /* PresentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8FA97F1C20629C00C30038 /* PresentingViewController.swift */; };
-		FDAE9C251C3A714400D97ADA /* SlideAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAE9C241C3A714300D97ADA /* SlideAnimationController.swift */; };
 		FDC202201C229AC20002D944 /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC2021F1C229AC20002D944 /* OverlayPresentationController.swift */; };
 		FDC202251C22AA500002D944 /* SDEModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC202241C22AA500002D944 /* SDEModalTransitionDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD0E268F1E49BFC800557F5C /* SlideAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimationController.swift; sourceTree = "<group>"; };
 		FD368ACE1C1F26C9001D204F /* CustomModalTransitionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomModalTransitionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD368AD11C1F26C9001D204F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD368AD31C1F26C9001D204F /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
@@ -29,7 +30,6 @@
 		FD368ADD1C1F26C9001D204F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD8AFEA71C26E869008EC7F9 /* OverlayAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayAnimationController.swift; sourceTree = "<group>"; };
 		FD8FA97F1C20629C00C30038 /* PresentingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentingViewController.swift; sourceTree = "<group>"; };
-		FDAE9C241C3A714300D97ADA /* SlideAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimationController.swift; sourceTree = "<group>"; };
 		FDC2021F1C229AC20002D944 /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
 		FDC202241C22AA500002D944 /* SDEModalTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEModalTransitionDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,11 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				FD368AD11C1F26C9001D204F /* AppDelegate.swift */,
+				FD0E268F1E49BFC800557F5C /* SlideAnimationController.swift */,
 				FD8FA97F1C20629C00C30038 /* PresentingViewController.swift */,
 				FD368AD31C1F26C9001D204F /* PresentedViewController.swift */,
 				FDC202241C22AA500002D944 /* SDEModalTransitionDelegate.swift */,
 				FD8AFEA71C26E869008EC7F9 /* OverlayAnimationController.swift */,
-				FDAE9C241C3A714300D97ADA /* SlideAnimationController.swift */,
 				FDC2021F1C229AC20002D944 /* OverlayPresentationController.swift */,
 				FD368AD51C1F26C9001D204F /* Main.storyboard */,
 				FD368AD81C1F26C9001D204F /* Assets.xcassets */,
@@ -155,7 +155,7 @@
 				FDC202201C229AC20002D944 /* OverlayPresentationController.swift in Sources */,
 				FD368AD41C1F26C9001D204F /* PresentedViewController.swift in Sources */,
 				FD8FA9801C20629C00C30038 /* PresentingViewController.swift in Sources */,
-				FDAE9C251C3A714400D97ADA /* SlideAnimationController.swift in Sources */,
+				FD0E26901E49BFC800557F5C /* SlideAnimationController.swift in Sources */,
 				FD8AFEA81C26E869008EC7F9 /* OverlayAnimationController.swift in Sources */,
 				FD368AD21C1F26C9001D204F /* AppDelegate.swift in Sources */,
 			);
