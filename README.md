@@ -1,4 +1,5 @@
 # iOS-ViewController-Transition-Demo
+Update: 更新到了 Swift 3.0，意味着不再支持 iOS 7；依然在使用 Xcode 7 的用户可切换至 Swift 2.2 分支。
 
 [《iOS 视图控制器转场详解》](https://github.com/seedante/iOS-Note/wiki/ViewController-Transition)已发布到微信公众号「iOSDevTips」，这是配套 Demo，使用 Swift 实现。本文并非华丽的转场动画教程，相反，为了不让文章过于复杂和冗长，范例的转场动画效果都是入门级别的。为何弄这么简单的动画效果？转场动画=转场+动画，转场的部分与动画的部分是独立的，无论是简单的转场动画还是复杂的转场动画，他们在转场部分的复杂度几乎是一样的。文章着眼于探索视图控制器转场背后的机制，缺陷以及实现过程中的技巧与陷阱。
 
