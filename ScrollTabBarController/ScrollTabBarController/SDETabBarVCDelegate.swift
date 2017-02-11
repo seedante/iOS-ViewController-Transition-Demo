@@ -22,9 +22,8 @@ class SDETabBarVCDelegate: NSObject, UITabBarControllerDelegate {
         let slideAnimationController = SlideAnimationController(type: transitionType)
         return slideAnimationController
     }
-    
-    func tabBarController(tabBarController: UITabBarController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+   
+    func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?{
         return interactive ? interactionController : nil
     }
-    
 }
