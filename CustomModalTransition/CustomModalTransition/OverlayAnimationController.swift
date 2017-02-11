@@ -37,6 +37,8 @@ class OverlayAnimationController: NSObject, UIViewControllerAnimatedTransitionin
                         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                 })
             }else{
+                // 文章里的示范代码是基于 iOS 7 以上的系统的，但是升级到 Swift 3.0 后，这段代码就没用了，仅对应文章里的旧代码。
+                // 这段代码给 toView 添加了一个半透明的背景，在 iOS 8 中，这个背景由 OverlayPresentationController.swift 去添加。
                 let dimmingView = UIView()
                 containerView.insertSubview(dimmingView, belowSubview: toView!)
                 dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.5)

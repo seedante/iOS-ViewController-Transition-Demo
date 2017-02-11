@@ -12,7 +12,6 @@ class PresentingViewController: UIViewController{
 
     let presentTransitionDelegate = SDEModalTransitionDelegate()
     
-    @IBOutlet weak var testView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -30,12 +29,11 @@ class PresentingViewController: UIViewController{
     */
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         let toVC = segue.destination as! PresentedViewController
         toVC.transitioningDelegate = presentTransitionDelegate
         toVC.modalPresentationStyle = .custom
-        super.prepare(for: segue, sender: sender)
     }
 }
