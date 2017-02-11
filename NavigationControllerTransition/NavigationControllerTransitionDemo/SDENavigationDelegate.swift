@@ -18,7 +18,7 @@ class SDENavigationDelegate: NSObject, UINavigationControllerDelegate {
         return SlideAnimationController(type: transitionType)
     }
     
-    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?{
         return interactive ? self.interactionController : nil
-    }
+    }    
 }
